@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class CheckoutOverviewPage:
 
     PAGE_TITLE=(By.CLASS_NAME,"title")
-    PRODUCT_NAMES=(By.CASS_NAME,"inventory_item_name")
+    PRODUCT_NAMES=(By.CLASS_NAME,"inventory_item_name")
     PRODUCT_PRICES=(By.CLASS_NAME,"inventory_item_price")
     ITEM_TOTAL=(By.CLASS_NAME,"summary_subtotal_label")
     TAX=(By.CLASS_NAME,"summary_tax_label")
@@ -26,7 +26,7 @@ class CheckoutOverviewPage:
     def get_total_item(self):
         return self.driver.find_element(
             *self.ITEM_TOTAL
-        )
+        ).text
     def get_product_prices(self):
         return self.driiver.find_element(
             *self.PRODUCT_PRICES
@@ -34,11 +34,11 @@ class CheckoutOverviewPage:
     def get_tax(self):
         return self.driver.find_element(
             *self.TAX
-        )
+        ).text
     def get_total_price(self):
         return self.driver.find_element(
             *self.TOTAL_PRICE
-        )
+        ).text
     def finish_button(self):
         return self.driver.find_element(
             *self.FINISH_BUTTON
