@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 from pages.login_page import LoginPage
+import os
 
 @pytest.fixture
 def driver():
@@ -39,3 +40,36 @@ def logged_in_driver(driver):
         "secret_sauce"
     )
     return driver
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call":
+
+        extra = getattr(report, "extras", [])
+
+        if report.failed:
+
+            driver = item.funcargs.get("logged_in_driver")
+
+            if driver:
+
+                screenshot = f"screenshots/{item.name}.png"
+
+                driver.save_screenshot(screenshot)
+
+                try:
+                    from pytest_html import extras
+
+                    extra.append(
+                        extras.image(screenshot)
+                    )
+
+                except Exception:
+                    pass
+
+        report.extras = extra
