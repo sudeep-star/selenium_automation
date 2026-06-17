@@ -3,6 +3,7 @@ from pages.inventory_pages import InventoryPage
 from pages.checkout_page import CheckoutPage
 from pages.checkout_overview_page import CheckoutOverviewPage
 import time
+import pytest
 
 def test_checkout_overview_page_loaded(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)
@@ -19,7 +20,7 @@ def test_checkout_overview_page_loaded(logged_in_driver):
     checkout_page.click_continue_button()
 
     assert "checkout" in logged_in_driver.current_url
-
+@pytest.mark.regression
 def test_product_displayed_in_overview(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)
     cart_page=CartPage(logged_in_driver)
@@ -38,7 +39,7 @@ def test_product_displayed_in_overview(logged_in_driver):
     checkout_page.click_continue_button()
 
     assert checkout_overview_page.is_product_present("Sauce Labs Backpack")
-
+@pytest.mark.regression
 def test_multiple_product_displayed_in_overview(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)
     cart_page=CartPage(logged_in_driver)
@@ -118,6 +119,9 @@ def test_total_displayed(logged_in_driver):
     checkout_page.click_continue_button()
 
     assert "Total" in checkout_overview_page.get_total_price()
+
+@pytest.mark.smoke
+@pytest.mark.regression
 
 def test_click_finish_button(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)

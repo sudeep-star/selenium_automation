@@ -3,7 +3,10 @@ from pages.cart_page import CartPage
 from pages.checkout_complete_page import CheckoutCompletePage
 from pages.inventory_pages import InventoryPage
 from pages.checkout_page import CheckoutPage
+import pytest
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_checkout_complete_page_loaded(logged_in_driver):
     inventory_page=InventoryPage(logged_in_driver)
     cart_page=CartPage(logged_in_driver)
@@ -21,7 +24,7 @@ def test_checkout_complete_page_loaded(logged_in_driver):
     checkout_overview.finish_button()
 
     assert "checkout-complete" in logged_in_driver.current_url
-
+@pytest.mark.regression
 def test_success_message_displayed(logged_in_driver):
     inventory_page=InventoryPage(logged_in_driver)
     cart_page=CartPage(logged_in_driver)
@@ -40,7 +43,7 @@ def test_success_message_displayed(logged_in_driver):
     checkout_overview.finish_button()
 
     assert "Thank you" in checkout_complete.get_complete_header()
-
+@pytest.mark.regression
 def test_success_image_displayed(logged_in_driver):
     inventory_page=InventoryPage(logged_in_driver)
     cart_page=CartPage(logged_in_driver)

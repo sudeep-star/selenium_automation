@@ -1,6 +1,7 @@
 from pages.inventory_pages import InventoryPage
 from pages.login_page import LoginPage
 import time
+import pytest
 
 def test_inventory_page_loaded(logged_in_driver):
     
@@ -16,6 +17,8 @@ def test_products_are_displayed(logged_in_driver):
 
     assert inventory_pages.get_product_count()>0
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_products_are_added(logged_in_driver):
     
     inventory_pages=InventoryPage(logged_in_driver)
@@ -26,6 +29,7 @@ def test_products_are_added(logged_in_driver):
 
     assert inventory_pages.get_cart_count() == "1"
 
+@pytest.mark.regression
 def test_products_are_removed(logged_in_driver):
 
     inventory_pages=InventoryPage(logged_in_driver)

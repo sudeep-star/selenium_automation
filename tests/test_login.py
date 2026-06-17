@@ -1,5 +1,8 @@
 from pages.login_page import LoginPage
+import pytest
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_valid_login(driver):
     login_page=LoginPage(driver)
 
@@ -11,6 +14,8 @@ def test_valid_login(driver):
     
     assert "inventory" in driver.current_url
 
+
+@pytest.mark.regression
 def test_invalid_login(driver):
     login_page=LoginPage(driver)
 
@@ -25,6 +30,7 @@ def test_invalid_login(driver):
         "Username and password"
         in login_page.get_error_message())
     
+@pytest.mark.regression    
 def test_locked_out_user(driver):
 
     login_page=LoginPage(driver)
