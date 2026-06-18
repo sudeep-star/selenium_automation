@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
+from utils.logger import LogGenerator
 
 class CheckoutOverviewPage:
+    logger=LogGenerator.get_logger()
 
     PAGE_TITLE=(By.CLASS_NAME,"title")
     PRODUCT_NAMES=(By.CLASS_NAME,"inventory_item_name")
@@ -40,6 +42,7 @@ class CheckoutOverviewPage:
             *self.TOTAL_PRICE
         ).text
     def finish_button(self):
+        self.logger.info("Clicking finish button")
         return self.driver.find_element(
             *self.FINISH_BUTTON
         ).click()

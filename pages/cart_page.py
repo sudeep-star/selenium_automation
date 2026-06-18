@@ -1,7 +1,10 @@
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from utils.logger import LogGenerator
 
 class CartPage:
+    logger=LogGenerator.get_logger()
+
     CART_TITLE=(By.CLASS_NAME,"title")
 
     PRODUCT_NAMES=(By.CLASS_NAME,"inventory_item_name")
@@ -29,6 +32,7 @@ class CartPage:
 
 
     def open_cart(self):
+        self.logger.info("Opening cart page")
         self.driver.find_element(
             *self.CART_ICON
         ).click()
@@ -57,10 +61,12 @@ class CartPage:
         *self.REMOVE_BIKE_LIGHT
     ).click()
     def click_continue_shopping(self):
+        
         self.driver.find_element(
             *self.CONTINUE_SHOPPING
         ).click()
     def click_checkout(self):
+            self.logger.info("Clicking checkout button")
             self.driver.find_element(
                 *self.CHECKOUT_BUTTON
             ).click()

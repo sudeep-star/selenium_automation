@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
+from utils.logger import LogGenerator
 
 class CheckoutPage:
+    logger=LogGenerator.get_logger()
+            
     FIRST_NAME=(By.ID,"first-name")
     LAST_NAME=(By.ID,"last-name")
     ZIP_CODE=(By.ID,"postal-code")
@@ -28,6 +31,7 @@ class CheckoutPage:
             *self.CANCEL_BUTTON
         ).click()
     def click_continue_button(self):
+        self.logger.info("Continue button clicked")
         self.driver.find_element(
             *self.CONTINUE_BUTTON
         ).click()

@@ -1,7 +1,9 @@
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from utils.logger import LogGenerator
 
 class InventoryPage:
+    logger=LogGenerator.get_logger()
     URL = "https://www.saucedemo.com/inventory.html"
 
     PAGE_TITLE=(
@@ -69,10 +71,12 @@ class InventoryPage:
     #cart actions
 
     def add_backpack_to_cart(self):
+        self.logger.info("Adding backpack to cart")
         self.driver.find_element(
             *self.BACKPACK_ADD_BUTTON
         ).click()
     def remove_backpack_to_cart(self):
+        self.logger.info("Removing backpack from cart")
         self.driver.find_element(
             *self.BACKPACK_REMOVE_BUTTON
         ).click()

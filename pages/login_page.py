@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
+from utils.logger import LogGenerator
 
 class LoginPage:
+    logger=LogGenerator.get_logger()
     URL = "https://www.saucedemo.com"
 
     USERNAME=(By.ID,"user-name")
@@ -21,9 +23,11 @@ class LoginPage:
     def enter_password(self,password):
         self.driver.find_element(*self.PASSWORD).send_keys(password)
     def click_login(self):
+        self.logger.info("Login Button Clicked")
         self.driver.find_element(*self.LOGIN_BUTTON).click()
     
     def login(self, username, password):
+        self.logger.info(f"Logging in with {username}")
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
