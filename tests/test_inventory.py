@@ -35,8 +35,8 @@ def test_products_are_removed(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)
 
 
-    #inventory_pages.add_backpack_to_cart()
-    #time.sleep(3)
+    inventory_pages.add_backpack_to_cart()
+    time.sleep(3)
     inventory_pages.remove_backpack_to_cart()
     time.sleep(3)
     assert inventory_pages.get_cart_count()== 6
