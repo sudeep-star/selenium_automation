@@ -39,7 +39,7 @@ def test_products_are_removed(logged_in_driver):
     time.sleep(3)
     inventory_pages.remove_backpack_to_cart()
     time.sleep(3)
-    assert inventory_pages.get_cart_count()== 6
+    assert inventory_pages.get_cart_count()== 0
 
 def test_product_details(logged_in_driver):
     
