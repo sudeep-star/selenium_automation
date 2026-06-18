@@ -27,7 +27,7 @@ def test_products_are_added(logged_in_driver):
     inventory_pages.add_backpack_to_cart()
     time.sleep(3)
 
-    assert inventory_pages.get_cart_count() == "1"
+    assert inventory_pages.get_cart_count() == 1
 
 @pytest.mark.regression
 def test_products_are_removed(logged_in_driver):
