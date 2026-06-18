@@ -19,8 +19,14 @@ def driver():
     options.add_argument("--disable-features=PasswordLeakDetection")
     options.add_argument("--disable-notifications")
 
+    #Github Actions
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
+
     driver = webdriver.Chrome(options=options)
-    driver.maximize_window()
+    #driver.maximize_window()
 
     yield driver
     
@@ -57,7 +63,7 @@ def pytest_runtest_makereport(item, call):
             driver = item.funcargs.get("logged_in_driver")
 
             if driver:
-
+                os.makedirs("screenshots", exist_ok=True)
                 screenshot = f"screenshots/{item.name}.png"
 
                 driver.save_screenshot(screenshot)
