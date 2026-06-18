@@ -92,9 +92,14 @@ class InventoryPage:
         ).click()
     
     def get_cart_count(self):
-        return self.driver.find_element(
+        badges= self.driver.find_element(
             *self.CART_BADGE
-        ).text
+        )
+        if len(badges)==0:
+            return 0
+        else:
+            return int(badges[0].text)
+    
     
     def open_cart(self):
         self.driver.find_element(
