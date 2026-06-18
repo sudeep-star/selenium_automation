@@ -31,7 +31,7 @@ def test_cart_badge_updates(logged_in_driver):
     #cart_page=CartPage(logged_in_driver)
 
     inventory_pages.add_backpack_to_cart()
-    assert inventory_pages.get_cart_count()== "1"
+    assert inventory_pages.get_cart_count()== 1
 @pytest.mark.regression
 def test_multiple_products_added(logged_in_driver):
     inventory_pages=InventoryPage(logged_in_driver)
